@@ -1,6 +1,7 @@
 import { Server, Socket } from "socket.io";
 import { PollService } from "../services/poll.service";
 import { Poll } from "../models/Poll";
+import { isDBConnected } from "../server";
 
 interface StudentInfo {
   socketId: string;
@@ -68,29 +69,6 @@ export function pollSocket(io: Server) {
 // Send chat history on join
 socket.emit("chat_history", chatMessages);
 
-//   socket.on("disconnect", () => {
-//   for (const [id] of students) {
-//     if (id === socket.id) {
-//       students.delete(id);
-//       io.emit("student_list", [...students.entries()]);
-//     }
-//   }
-// });
-
-
-
-// socket.on("kick_student", (studentId: string) => {
-//       for (const [sockId, student] of students.entries()) {
-//         if (student.studentId === studentId) {
-//           io.to(sockId).emit("kicked");
-//           io.sockets.sockets.get(sockId)?.disconnect(true);
-//           students.delete(sockId);
-//           break;
-//         }
-//       }
-
-//       io.emit("student_list", Array.from(students.values()));
-//     });
 socket.on("kick_student", (socketId: string) => {
   const targetSocket = io.sockets.sockets.get(socketId);
 
@@ -126,13 +104,9 @@ socket.on("kick_student", (socketId: string) => {
     });
   });
 
-    // socket.on("disconnect", () => {
-    //   console.log("❌ Socket disconnected:", socket.id);
-    // });
-  // });
-
   // 🔥 SERVER TIMER CHECK (OPTIONAL BUT GOOD)
   setInterval(async () => {
+      if (!isDBConnected) return; 
     const poll = await Poll.findOne({ isActive: true });
     if (!poll) return;
 

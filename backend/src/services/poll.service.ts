@@ -49,7 +49,7 @@ export class PollService {
     const poll = await Poll.findOne({ isActive: true });
 
     if (!poll) {
-      return { poll: null };
+      return { poll: null  , remainingTime: 0, hasVoted: false};
     }
 
     const now = Date.now();
