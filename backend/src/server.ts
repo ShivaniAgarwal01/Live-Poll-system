@@ -15,9 +15,9 @@ const server = http.createServer(app);
 const io = new Server(server, { cors: { origin: "*" ,  methods: ["GET", "POST"]} });
 app.set("io", io);
 pollSocket(io);
-console.log("👉 MONGO_URI USED BY APP =", process.env.MONGO_URI);
+console.log("MONGO_URI USED BY APP =", process.env.MONGO_URI);
 mongoose.connect(process.env.MONGO_URI!)
-.then(() => console.log("✅ MongoDB connected"))
+.then(() => console.log("MongoDB connected"))
   .catch((err) => {
     console.error("MongoDB connection error:", err);
     process.exit(1);
