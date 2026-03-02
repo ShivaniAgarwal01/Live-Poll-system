@@ -154,7 +154,6 @@ const percentage = (optionVotes / totalVotes) * 100;
 Results update in real-time using `vote_update`.
 
 ---
-
 ---
 
 ## 🔄 Application Flow
