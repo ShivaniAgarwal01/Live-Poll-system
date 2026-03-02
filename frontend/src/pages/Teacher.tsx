@@ -15,7 +15,6 @@ type Student = {
 
 export default function Teacher() {
   const socket = useSocket();
-  const joinedRef = useRef(false);
 
   const [question, setQuestion] = useState("");
   const [options, setOptions] = useState<string[]>(["", ""]);
