@@ -5,7 +5,9 @@
 Live-Poll System is a real-time classroom polling application that allows teachers to create live polls and students to vote instantly. The system includes live vote updates, countdown timers, chat functionality, participant management, and poll history.
 
 ---
+Deployed - https://live-poll-system-ui.onrender.com 
 
+---
 ## 📌 Overview
 
 This project enables interactive classroom engagement using WebSockets for real-time communication. Teachers can create timed polls and monitor responses live, while students can vote and participate in chat.
@@ -154,7 +156,6 @@ const percentage = (optionVotes / totalVotes) * 100;
 Results update in real-time using `vote_update`.
 
 ---
-
 ---
 
 ## 🔄 Application Flow

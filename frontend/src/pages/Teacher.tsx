@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useSocket } from "../hooks/useSocket";
 
 interface ResultOption {
@@ -15,7 +15,6 @@ type Student = {
 
 export default function Teacher() {
   const socket = useSocket();
-  const joinedRef = useRef(false);
 
   const [question, setQuestion] = useState("");
   const [options, setOptions] = useState<string[]>(["", ""]);
