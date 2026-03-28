@@ -45,10 +45,9 @@ export default function Student() {
   const [pollEnded, setPollEnded] = useState(false);
   const [kicked, setKicked] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
-const [activeTab, setActiveTab] = useState<"chat" | "participants">("chat");
-const [messages, setMessages] = useState<any[]>([]);
-const [newMessage, setNewMessage] = useState("");
-
+  const [activeTab, setActiveTab] = useState<"chat" | "participants">("chat");
+  const [messages, setMessages] = useState<any[]>([]);
+  const [newMessage, setNewMessage] = useState("");
   const onboarding = !nameEntered;
 
   /* ================= FETCH CURRENT POLL (REFRESH SAFE) ================= */
@@ -232,11 +231,11 @@ socket?.on("chat_message", (msg) => {
             disabled={!name.trim()}
             onClick={() => {
               const cleanName = name.trim();
-  sessionStorage.setItem("studentName", cleanName);
-  setName(cleanName);
+            sessionStorage.setItem("studentName", cleanName);
+              setName(cleanName);
               setNameEntered(true);
             // socket?.emit("student_join", { name: cleanName });
-// setNameEntered(true);
+            // setNameEntered(true);
             }}
           >
             Continue
