@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSocket } from "../hooks/useSocket";
+const API_URL = import.meta.env.VITE_API_URL;
 
 interface Option {
   id: string;
@@ -62,7 +63,7 @@ const [newMessage, setNewMessage] = useState("");
   useEffect(() => {
     if (onboarding) return;
 
-    fetch(`http://localhost:5000/poll/current?studentId=${studentId}`)
+    fetch(`${API_URL}/poll/current?studentId=${studentId}`)
       .then((res) => res.json())
       .then((data) => {
         if (data?.poll) {

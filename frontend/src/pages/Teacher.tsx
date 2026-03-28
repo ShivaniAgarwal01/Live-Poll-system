@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSocket } from "../hooks/useSocket";
+const API_URL = import.meta.env.VITE_API_URL;
 
 interface ResultOption {
   id: string;
@@ -33,7 +34,7 @@ export default function Teacher() {
   const [newMessage, setNewMessage] = useState("");
 
   const fetchHistory = async () => {
-    const res = await fetch("http://localhost:5000/poll/history");
+    const res = await fetch(`${API_URL}/poll/history`);
     const data = await res.json();
     setHistory(data);
     setShowHistory(true);
@@ -69,7 +70,7 @@ export default function Teacher() {
   }, [socket, duration]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/poll/current")
+    fetch(`${API_URL}/poll/current`)
       .then((res) => res.json())
       .then((data) => {
         if (data?.poll) {
@@ -94,7 +95,7 @@ export default function Teacher() {
   const createPoll = async () => {
     if (!question.trim() || options.some((o) => !o.trim())) return;
 
-    const res = await fetch("http://localhost:5000/poll", {
+    const res = await fetch(`${API_URL}/poll`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ question, options, duration }),
@@ -217,27 +218,27 @@ const CreatePollView = React.memo(
 
         {/* Heading */}
         <h1 className="text-3xl text-(--color-dark) mb-2">
-          Let’s <span className="font-bold">Get Started</span>
+          Let’s <span className="font-semibold">Get Started</span>
         </h1>
 
-        <p className="text-(--color-grey) mb-6 max-w-xl">
-          You’ll have the ability to create and manage polls, ask questions, and monitor student responses in real-time.
+        <p className="text-(--color-dark-light) mb-6 max-w-xl ">
+          you’ll have the ability to create and manage polls, ask questions, and monitor your student responses in real-time.
         </p>
 
         <div className="space-y-2">
-
           {/* Duration */}
           <div className="flex justify-end">
             <select
               value={duration}
               onChange={(e) => setDuration(Number(e.target.value))}
-              className="bg-(--color-whitish) px-4 py-2 rounded-md text-sm outline-none"
+              className="bg-(--color-whitish) px-4 py-2 rounded-md text-sm outline-none font-semibold"
             >
               <option value={30}>30 seconds</option>
               <option value={45}>45 seconds</option>
               <option value={60}>60 seconds</option>
               <option value={90}>90 seconds</option>
             </select>
+            
           </div>
 
           {/* Question */}

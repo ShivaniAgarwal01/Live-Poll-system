@@ -5,8 +5,7 @@ export function useSocket() {
   const socketRef = useRef<Socket | null>(null);
 
   useEffect(() => {
-    socketRef.current = io("https://live-poll-system-2mg9.onrender.com");
-
+    socketRef.current = io("https://live-poll-system-backend-nfgv.onrender.com")
     return () => {
       socketRef.current?.disconnect();
     };
